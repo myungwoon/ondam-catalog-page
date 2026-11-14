@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','{{GTM_ID}}');</script>
+  <!-- End Google Tag Manager -->
+
+  <!-- GA4_DIRECT_START -->
+  <!-- Google tag (gtag.js) — GA4 직접 연동. GTM 안에 GA4 태그를 따로 만들면 site.config.json 의 ga4Direct 를 false 로 바꾸세요(중복 수집 방지). -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id={{GA4_ID}}"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', '{{GA4_ID}}', {
+      site_version: '{{SITE_VERSION}}',
+      debug_mode: /[?&]debug=1/.test(location.search) || undefined
+    });
+  </script>
+  <!-- GA4_DIRECT_END -->
+
+  <script>
+    // 태깅 설정 단일 출처: site.config.json → 빌드 시 주입
+    window.SITE_CONFIG = { gtmId: '{{GTM_ID}}', ga4Id: '{{GA4_ID}}', ga4Direct: {{GA4_DIRECT}}, version: '{{SITE_VERSION}}', buildTime: '{{BUILD_TIME}}' };
+  </script>
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ONDAM 온담 | 계절을 담은 블렌딩 티 컬렉션</title>
+  <meta name="description" content="제주 유기농 녹차와 국산 약초로 블렌딩한 ONDAM 티 컬렉션. 첫 구매 15% 할인, 3만원 이상 무료배송.">
+  <meta property="og:title" content="ONDAM 온담 티 컬렉션">
+  <meta property="og:description" content="계절을 담은 블렌딩 티. 첫 구매 15% 할인.">
+  <meta property="og:type" content="website">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%232f5d50'/%3E%3Cpath d='M20 36c4-14 20-18 26-14-2 12-14 18-26 14z' fill='%23e9d8a6'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;500;700&family=Noto+Serif+KR:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id={{GTM_ID}}"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
+  <div class="promo-bar" role="note">첫 구매 <strong>15% 할인</strong> · 30,000원 이상 무료배송 <a href="#newsletter" data-cta="promo_bar_coupon" data-cta-location="promo_bar">쿠폰 받기 →</a></div>
+
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="logo" href="/" data-cta="logo" data-cta-location="header">ONDAM<span>온담</span></a>
+      <nav class="nav" aria-label="주요 메뉴">
+        <a href="#catalog" data-nav="catalog">컬렉션</a>
+        <a href="#story" data-nav="story">브랜드 스토리</a>
+        <a href="#newsletter" data-nav="newsletter">혜택</a>
+      </nav>
+      <button class="cart-btn" type="button" id="cartOpen" aria-label="장바구니 열기">
+        장바구니 <span class="cart-count" id="cartCount">0</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow">2026 겨울 컬렉션</p>
+          <h1>계절을 한 잔에 담다</h1>
+          <p class="lead">제주 유기농 녹차와 국산 약초를 소량씩 블렌딩했습니다. 카페인 걱정 없는 허브티부터 깊은 발효차까지, 하루의 온도를 맞춰 보세요.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#catalog" data-cta="hero_shop_now" data-cta-location="hero">컬렉션 보기</a>
+            <button class="btn btn-ghost" type="button" data-cta="hero_best_seller" data-cta-location="hero" data-open-product="ondam-jeju-green">베스트셀러 바로 보기</button>
+          </div>
+          <ul class="hero-badges">
+            <li>🌿 유기농 인증 원료</li>
+            <li>🚚 오후 2시 전 주문 당일 출고</li>
+            <li>↩️ 7일 무료 반품</li>
+          </ul>
+        </div>
+        <div class="hero-visual" aria-hidden="true">
+          <div class="tea-can tea-can--lg" style="--c1:#2f5d50;--c2:#88b29b">
+            <span>ONDAM</span><small>JEJU GREEN</small>
+          </div>
+          <div class="tea-can tea-can--sm" style="--c1:#9c4a2f;--c2:#e2a26b"><span>ONDAM</span><small>YUJA</small></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="catalog" class="section">
+      <div class="container">
+        <div class="section-head">
+          <h2>티 컬렉션</h2>
+          <p>원하는 맛과 시간대로 골라 보세요.</p>
+        </div>
+        <div class="filters" role="tablist" aria-label="카테고리 필터" id="filters"></div>
+        <ul class="product-grid" id="productGrid" aria-live="polite"></ul>
+      </div>
+    </section>
+
+    <section id="story" class="section section--alt">
+      <div class="container story">
+        <div>
+          <h2>제주에서 시작된 한 잔</h2>
+          <p>ONDAM은 제주 서귀포의 3대째 차밭과 함께합니다. 첫물차만 손으로 따서 48시간 안에 덖고, 국산 유자·생강·대추를 더해 블렌딩합니다.</p>
+          <a class="btn btn-ghost" href="#catalog" data-cta="story_shop" data-cta-location="story">차 고르러 가기</a>
+        </div>
+        <dl class="stats">
+          <div><dt>재구매율</dt><dd>62%</dd></div>
+          <div><dt>누적 판매</dt><dd>18만 개</dd></div>
+          <div><dt>평균 평점</dt><dd>4.8</dd></div>
+        </dl>
+      </div>
+    </section>
+
+    <section id="newsletter" class="section">
+      <div class="container newsletter">
+        <div>
+          <h2>첫 구매 15% 쿠폰</h2>
+          <p>이메일을 남기면 쿠폰과 계절 한정 블렌드 소식을 보내 드려요.</p>
+        </div>
+        <form id="leadForm" class="lead-form" novalidate>
+          <label class="sr-only" for="leadEmail">이메일</label>
+          <input id="leadEmail" name="email" type="email" placeholder="you@example.com" required autocomplete="email">
+          <label class="consent"><input type="checkbox" name="consent" required> 마케팅 정보 수신에 동의합니다</label>
+          <button class="btn btn-primary" type="submit" data-cta="newsletter_submit" data-cta-location="newsletter">쿠폰 받기</button>
+          <p class="form-msg" id="leadMsg" role="status"></p>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <p><strong>ONDAM 온담</strong> · 가상 브랜드 데모 페이지 (실제 판매하지 않습니다)</p>
+      <p class="muted">빌드 <span id="buildInfo"></span></p>
+    </div>
+  </footer>
+
+  <!-- 상품 상세 모달 -->
+  <dialog id="productModal" class="modal" aria-labelledby="modalTitle">
+    <div class="modal-body" id="modalBody"></div>
+  </dialog>
+
+  <!-- 장바구니 드로어 -->
+  <aside id="cartDrawer" class="drawer" aria-hidden="true" aria-label="장바구니">
+    <div class="drawer-head"><h3>장바구니</h3><button type="button" class="icon-btn" id="cartClose" aria-label="닫기">✕</button></div>
+    <ul id="cartItems" class="cart-items"></ul>
+    <div class="drawer-foot">
+      <p class="cart-total">합계 <strong id="cartTotal">0원</strong></p>
+      <button class="btn btn-primary btn-block" type="button" id="checkoutBtn" data-cta="cart_checkout" data-cta-location="cart_drawer">주문하기</button>
+    </div>
+  </aside>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <script src="/products.js"></script>
+  <script src="/tracking.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>
