@@ -55,6 +55,8 @@
       <nav class="nav" aria-label="주요 메뉴">
         <a href="#catalog" data-nav="catalog">컬렉션</a>
         <a href="#story" data-nav="story">브랜드 스토리</a>
+        <a href="#reviews" data-nav="reviews">후기</a>
+        <a href="#faq" data-nav="faq">FAQ</a>
         <a href="#newsletter" data-nav="newsletter">혜택</a>
       </nav>
       <button class="cart-btn" type="button" id="cartOpen" aria-label="장바구니 열기">
@@ -89,6 +91,17 @@
       </div>
     </section>
 
+    <section class="promo-strip" aria-label="프로모션">
+      <div class="container promo-cards">
+        <a class="promo-card" href="#catalog" data-promo-id="winter_gift_2026" data-promo-name="겨울 선물세트 10%" data-creative-slot="promo_1" data-open-product="ondam-gift-set">
+          <span class="promo-kicker">WINTER GIFT</span><strong>사계절 선물 세트 10% 할인</strong><span>메시지 카드·쇼핑백 무료 →</span>
+        </a>
+        <a class="promo-card promo-card--dark" href="#catalog" data-promo-id="caffeine_free" data-promo-name="무카페인 컬렉션" data-creative-slot="promo_2" data-promo-filter="허브티">
+          <span class="promo-kicker">CAFFEINE FREE</span><strong>잠들기 전 한 잔, 허브티</strong><span>무카페인 블렌드 보기 →</span>
+        </a>
+      </div>
+    </section>
+
     <section id="catalog" class="section">
       <div class="container">
         <div class="section-head">
@@ -112,6 +125,27 @@
           <div><dt>누적 판매</dt><dd>18만 개</dd></div>
           <div><dt>평균 평점</dt><dd>4.8</dd></div>
         </dl>
+      </div>
+    </section>
+
+    <section id="reviews" class="section">
+      <div class="container">
+        <div class="section-head"><h2>마셔 본 분들의 이야기</h2><p>구매 확정 리뷰 2,900여 개 · 평균 4.8점</p></div>
+        <ul class="reviews">
+          <li><p>“카페인 때문에 저녁엔 차를 못 마셨는데 유자 허니부시는 매일 밤 마셔요.”</p><span>★★★★★ · 김*연 · 고흥 유자 허니부시</span></li>
+          <li><p>“첫물 녹차가 이렇게 고소한 줄 몰랐어요. 티백인데 잎차 같은 맛.”</p><span>★★★★★ · 박*호 · 제주 첫물 녹차</span></li>
+          <li><p>“부모님 선물로 드렸는데 상자가 고급스러워서 반응이 좋았어요.”</p><span>★★★★★ · 이*은 · 사계절 선물 세트</span></li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="faq" class="section section--alt">
+      <div class="container faq">
+        <h2>자주 묻는 질문</h2>
+        <details data-faq="shipping"><summary>배송은 얼마나 걸리나요?</summary><p>평일 오후 2시 전 주문은 당일 출고되며, 보통 1~2일 안에 받으실 수 있어요. 30,000원 이상은 무료배송입니다.</p></details>
+        <details data-faq="caffeine"><summary>카페인이 없는 차는 어떤 건가요?</summary><p>허브티 카테고리(유자 허니부시, 생강 대추)는 카페인이 없어요. 녹차는 중간, 발효 홍차는 높은 편입니다.</p></details>
+        <details data-faq="brewing"><summary>어떻게 우려야 맛있나요?</summary><p>녹차는 80℃ 물에 2분, 허브티와 홍차는 95℃ 물에 3~4분을 권합니다.</p></details>
+        <details data-faq="return"><summary>반품·교환이 되나요?</summary><p>미개봉 상품은 수령 후 7일 안에 무료로 반품할 수 있어요.</p></details>
       </div>
     </section>
 
@@ -153,6 +187,10 @@
       <button class="btn btn-primary btn-block" type="button" id="checkoutBtn" data-cta="cart_checkout" data-cta-location="cart_drawer">주문하기</button>
     </div>
   </aside>
+  <div class="sticky-cta" id="stickyCta">
+    <span><strong>첫 구매 15%</strong> 쿠폰 받고 시작하기</span>
+    <a class="btn btn-primary btn-small" href="#newsletter" data-cta="sticky_coupon" data-cta-location="sticky_bar">쿠폰 받기</a>
+  </div>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <script src="/products.js"></script>

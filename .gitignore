@@ -3,3 +3,6 @@ public/
 .vercel/
 .env*
 .claude/
+
+.vercel
+.env*

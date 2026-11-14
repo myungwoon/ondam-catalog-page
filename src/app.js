@@ -6,6 +6,7 @@
   var $ = function (s) { return document.querySelector(s); };
   var cart = loadCart();
   var currentFilter = '전체';
+  var wish = (function () { try { return JSON.parse(localStorage.getItem('ondam_wish') || '[]'); } catch (e) { return []; } })();
 
   document.getElementById('buildInfo').textContent = (window.SITE_CONFIG.version || '') + ' · ' + (window.SITE_CONFIG.buildTime || '');
 
@@ -39,6 +40,7 @@
     $('#productGrid').innerHTML = visible().map(function (p, i) {
       return '<li class="card" data-product="' + p.id + '" data-index="' + i + '">' +
         (p.badge ? '<span class="badge badge--' + p.badge.toLowerCase() + '">' + p.badge + '</span>' : '') +
+        '<button type="button" class="wish' + (wish.indexOf(p.id) > -1 ? ' is-on' : '') + '" data-action="wish" aria-pressed="' + (wish.indexOf(p.id) > -1) + '" aria-label="' + p.name + ' 찜하기">♥</button>' +
         '<button type="button" class="card-media" data-action="select" aria-label="' + p.name + ' 상세 보기">' + canHtml(p, 'md') + '</button>' +
         '<div class="card-body">' +
           '<p class="card-cat">' + p.category + ' · ' + p.weight + '</p>' +
@@ -60,12 +62,20 @@
       openProduct(p.id, idx);
     } else if (btn.dataset.action === 'add') {
       addToCart(p, 1, 'product_card');
+    } else if (btn.dataset.action === 'wish') {
+      var on = wish.indexOf(p.id) === -1;
+      wish = on ? wish.concat(p.id) : wish.filter(function (w) { return w !== p.id; });
+      try { localStorage.setItem('ondam_wish', JSON.stringify(wish)); } catch (err) {}
+      btn.classList.toggle('is-on', on); btn.setAttribute('aria-pressed', on);
+      if (on) { T.track('add_to_wishlist', { currency: 'KRW', value: p.salePrice || p.price, items: [T.toItem(p, idx, 1, LIST_ID, LIST_NAME)] }); toast('찜 목록에 담았어요'); }
+      else T.track('remove_from_wishlist', { item_id: p.id, item_name: p.name });
     }
   });
 
   // 목록 노출: 카탈로그가 화면에 처음 보일 때 1회 + 필터 변경 시
   var listViewed = false;
   function trackListView() {
+    listViewed = true;
     T.track('view_item_list', { item_list_id: LIST_ID, item_list_name: LIST_NAME,
       items: visible().map(function (p, i) { return T.toItem(p, i, 1, LIST_ID, LIST_NAME); }) });
   }
@@ -173,6 +183,41 @@
     msg.textContent = '쿠폰이 발급됐어요! 코드: ONDAM15 (데모)';
     f.reset();
   });
+
+  /* ---------- v2: 프로모션 배너 (view_promotion / select_promotion) ---------- */
+  function promoParams(el) {
+    return { promotion_id: el.dataset.promoId, promotion_name: el.dataset.promoName, creative_slot: el.dataset.creativeSlot, items: [] };
+  }
+  var promos = document.querySelectorAll('[data-promo-id]');
+  if ('IntersectionObserver' in window) {
+    var promoObs = new IntersectionObserver(function (ents) {
+      ents.forEach(function (en) { if (en.isIntersecting) { T.track('view_promotion', promoParams(en.target)); promoObs.unobserve(en.target); } });
+    }, { threshold: 0.5 });
+    promos.forEach(function (el) { promoObs.observe(el); });
+  }
+  promos.forEach(function (el) {
+    el.addEventListener('click', function () {
+      T.track('select_promotion', promoParams(el));
+      var f = el.dataset.promoFilter;
+      if (f) { var chip = document.querySelector('[data-filter="' + f + '"]'); if (chip) chip.click(); }
+    });
+  });
+
+  /* ---------- v2: FAQ 열람 ---------- */
+  document.querySelectorAll('[data-faq]').forEach(function (d) {
+    d.addEventListener('toggle', function () {
+      if (d.open) T.track('faq_open', { faq_id: d.dataset.faq, faq_question: d.querySelector('summary').textContent });
+    });
+  });
+
+  /* ---------- v2: 스크롤 깊이 (25/50/75/90%) ---------- */
+  var marks = [25, 50, 75, 90], sent = {};
+  function onScroll() {
+    var h = document.documentElement, pct = (h.scrollTop + innerHeight) / h.scrollHeight * 100;
+    marks.forEach(function (m) { if (pct >= m && !sent[m]) { sent[m] = 1; T.track('scroll_depth', { percent_scrolled: m }); } });
+    $('#stickyCta').classList.toggle('is-show', h.scrollTop > 600);
+  }
+  addEventListener('scroll', onScroll, { passive: true });
 
   /* ---------- 토스트 ---------- */
   var tt;
